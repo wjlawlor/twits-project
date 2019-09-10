@@ -1,0 +1,27 @@
+﻿@model IList<Twits2.Models.Twit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>There are @Model.Count twits to read.</p>
+
+<p>@Html.ActionLink("Create a Twit", "Create")</p>
+
+<div>
+@foreach (var twit in Model)
+{
+    <div>
+    @twit.Text 
+    @using (Html.BeginForm("Delete", "Twit", new { Id = twit.Id }, FormMethod.Post))
+    {
+        <button type="submit">Delete</button>
+    }
+    @twit.CreatedOn.ToString("f")
+    <p>&nbsp;</p>
+    </div>
+}
+</div>
